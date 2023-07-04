@@ -1,9 +1,9 @@
 package requests
 
 type Transaction struct {
-	SupplyChainRelationshipID *int    `json:"SupplyChainRelationshipID"`
-	Buyer                     *int    `json:"Buyer"`
-	Seller                    *int    `json:"Seller"`
+	SupplyChainRelationshipID int     `json:"SupplyChainRelationshipID"`
+	Buyer                     int     `json:"Buyer"`
+	Seller                    int     `json:"Seller"`
 	TransactionCurrency       *string `json:"TransactionCurrency"`
 	PaymentTerms              *string `json:"PaymentTerms"`
 	PaymentMethod             *string `json:"PaymentMethod"`

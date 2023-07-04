@@ -4,9 +4,9 @@ func ConvertToGeneralUpdates(generalUpdates GeneralUpdates) *GeneralUpdates {
 	data := generalUpdates
 
 	return &GeneralUpdates{
-		Buyer:               data.Buyer,
-		Seller:              data.Seller,
-		IsMarkedForDeletion: data.IsMarkedForDeletion,
+		SupplyChainRelationshipID:		data.SupplyChainRelationshipID,
+		Buyer:               			data.Buyer,
+		Seller:              			data.Seller,
 	}
 }
 
@@ -14,40 +14,17 @@ func ConvertToTransactionUpdates(transactionUpdates TransactionUpdates) *Transac
 	data := transactionUpdates
 
 	return &TransactionUpdates{
-		TransactionCurrency: data.TransactionCurrency,
-		PaymentTerms:        data.PaymentTerms,
-		PaymentMethod:       data.PaymentMethod,
-		Incoterms:           data.Incoterms,
-		QuotationIsBlocked:  data.QuotationIsBlocked,
-		OrderIsBlocked:      data.OrderIsBlocked,
-		DeliveryIsBlocked:   data.DeliveryIsBlocked,
-		BillingIsBlocked:    data.BillingIsBlocked,
-		IsMarkedForDeletion: data.IsMarkedForDeletion,
-	}
-}
-
-func ConvertToDeliveryRelationUpdates(deliveryRelationUpdates DeliveryRelationUpdates) *DeliveryRelationUpdates {
-	data := deliveryRelationUpdates
-
-	return &DeliveryRelationUpdates{
-		DeliverToParty:   data.DeliverToParty,
-		DeliverFromParty: data.DeliverFromParty,
-		DefaultRelation:  data.DefaultRelation,
-	}
-}
-
-func ConvertToPaymentRelationUpdates(paymentRelationUpdates PaymentRelationUpdates) *PaymentRelationUpdates {
-	data := paymentRelationUpdates
-
-	return &PaymentRelationUpdates{
-		Payer:                 data.Payer,
-		Payee:                 data.Payee,
-		DefaultRelation:       data.DefaultRelation,
-		PayerHouseBank:        data.PayerHouseBank,
-		PayerHouseBankAccount: data.PayerHouseBankAccount,
-		PayeeHouseBank:        data.PayeeHouseBank,
-		PayeeHouseBankAccount: data.PayeeHouseBankAccount,
-		IsMarkedForDeletion:   data.IsMarkedForDeletion,
+		SupplyChainRelationshipID:		data.SupplyChainRelationshipID,
+		Buyer:               			data.Buyer,
+		Seller:              			data.Seller,
+		TransactionCurrency: 			data.TransactionCurrency,
+		PaymentTerms:        			data.PaymentTerms,
+		PaymentMethod:       			data.PaymentMethod,
+		Incoterms:           			data.Incoterms,
+		QuotationIsBlocked:  			data.QuotationIsBlocked,
+		OrderIsBlocked:      			data.OrderIsBlocked,
+		DeliveryIsBlocked:   			data.DeliveryIsBlocked,
+		BillingIsBlocked:    			data.BillingIsBlocked,
 	}
 }
 
@@ -55,11 +32,45 @@ func ConvertToBillingRelationUpdates(billingRelationUpdates BillingRelationUpdat
 	data := billingRelationUpdates
 
 	return &BillingRelationUpdates{
-		BillToParty:                  data.BillToParty,
-		BillFromParty:                data.BillFromParty,
-		DefaultRelation:              data.DefaultRelation,
-		TransactionTaxClassification: data.TransactionTaxClassification,
-		IsMarkedForDeletion:          data.IsMarkedForDeletion,
+		SupplyChainRelationshipID:		data.SupplyChainRelationshipID,
+		Buyer:               			data.Buyer,
+		Seller:              			data.Seller,
+		BillToParty:                 	data.BillToParty,
+		BillFromParty:                	data.BillFromParty,
+		DefaultRelation:              	data.DefaultRelation,
+		TransactionTaxClassification: 	data.TransactionTaxClassification,
+	}
+}
+
+func ConvertToPaymentRelationUpdates(paymentRelationUpdates PaymentRelationUpdates) *PaymentRelationUpdates {
+	data := paymentRelationUpdates
+
+	return &PaymentRelationUpdates{
+		SupplyChainRelationshipID:		data.SupplyChainRelationshipID,
+		Buyer:               			data.Buyer,
+		Seller:              			data.Seller,
+		BillToParty:                 	data.BillToParty,
+		BillFromParty:                	data.BillFromParty,
+		Payer:                 			data.Payer,
+		Payee:                 			data.Payee,
+		DefaultRelation:       			data.DefaultRelation,
+		PayerHouseBank:        			data.PayerHouseBank,
+		PayerHouseBankAccount: 			data.PayerHouseBankAccount,
+		PayeeHouseBank:        			data.PayeeHouseBank,
+		PayeeHouseBankAccount: 			data.PayeeHouseBankAccount,
+	}
+}
+
+func ConvertToDeliveryRelationUpdates(deliveryRelationUpdates DeliveryRelationUpdates) *DeliveryRelationUpdates {
+	data := deliveryRelationUpdates
+
+	return &DeliveryRelationUpdates{
+		SupplyChainRelationshipID:		data.SupplyChainRelationshipID,
+		Buyer:               			data.Buyer,
+		Seller:              			data.Seller,
+		DeliverToParty:   				data.DeliverToParty,
+		DeliverFromParty: 				data.DeliverFromParty,
+		DefaultRelation:  				data.DefaultRelation,
 	}
 }
 
@@ -67,12 +78,16 @@ func ConvertToDeliveryPlantRelationUpdates(deliveryPlantRelationUpdates Delivery
 	data := deliveryPlantRelationUpdates
 
 	return &DeliveryPlantRelationUpdates{
-		DeliverToPlant:      data.DeliverToPlant,
-		DeliverFromPlant:    data.DeliverFromPlant,
-		DefaultRelation:     data.DefaultRelation,
-		MRPType:             data.MRPType,
-		MRPController:       data.MRPController,
-		IsMarkedForDeletion: data.IsMarkedForDeletion,
+		SupplyChainRelationshipID:		data.SupplyChainRelationshipID,
+		Buyer:               			data.Buyer,
+		Seller:              			data.Seller,
+		DeliverToParty:   				data.DeliverToParty,
+		DeliverFromParty: 				data.DeliverFromParty,
+		DeliverToPlant:      			data.DeliverToPlant,
+		DeliverFromPlant:    			data.DeliverFromPlant,
+		DefaultRelation:     			data.DefaultRelation,
+		MRPType:            			data.MRPType,
+		MRPController:       			data.MRPController,
 	}
 }
 
@@ -80,28 +95,39 @@ func ConvertToDeliveryPlantRelationProductUpdates(deliveryPlantRelationProductUp
 	data := deliveryPlantRelationProductUpdates
 
 	return &DeliveryPlantRelationProductUpdates{
-		DeliverToPlantStorageLocation:             data.DeliverToPlantStorageLocation,
-		DeliverFromPlantStorageLocation:           data.DeliverFromPlantStorageLocation,
-		DeliveryUnit:                              data.DeliveryUnit,
-		MRPType:                                   data.MRPType,
-		MRPController:                             data.MRPController,
-		ReorderThresholdQuantity:                  data.ReorderThresholdQuantity,
-		PlanningTimeFence:                         data.PlanningTimeFence,
-		MRPPlanningCalendar:                       data.MRPPlanningCalendar,
-		SafetyStockQuantityInBaseUnit:             data.SafetyStockQuantityInBaseUnit,
-		SafetyDuration:                            data.SafetyDuration,
-		MaximumStockQuantityInBaseUnit:            data.MaximumStockQuantityInBaseUnit,
-		MinimumDeliveryQuantityInBaseUnit:         data.MinimumDeliveryQuantityInBaseUnit,
-		MinimumDeliveryLotSizeQuantityInBaseUnit:  data.MinimumDeliveryLotSizeQuantityInBaseUnit,
-		StandardDeliveryLotSizeQuantityInBaseUnit: data.StandardDeliveryLotSizeQuantityInBaseUnit,
-		DeliveryLotSizeRoundingQuantityInBaseUnit: data.DeliveryLotSizeRoundingQuantityInBaseUnit,
-		MaximumDeliveryLotSizeQuantityInBaseUnit:  data.MaximumDeliveryLotSizeQuantityInBaseUnit,
-		MaximumDeliveryQuantityInBaseUnit:         data.MaximumDeliveryQuantityInBaseUnit,
-		DeliveryLotSizeIsFixed:                    data.DeliveryLotSizeIsFixed,
-		StandardDeliveryDurationInDays:            data.StandardDeliveryDurationInDays,
-		IsAutoOrderCreationAllowed:                data.IsAutoOrderCreationAllowed,
-		IsOrderAcknowledgementRequired:            data.IsOrderAcknowledgementRequired,
-		IsMarkedForDeletion:                       data.IsMarkedForDeletion,
+			SupplyChainRelationshipID:                 data.SupplyChainRelationshipID,
+			SupplyChainRelationshipDeliveryID:         data.SupplyChainRelationshipDeliveryID,
+			SupplyChainRelationshipDeliveryPlantID:    data.SupplyChainRelationshipDeliveryPlantID,
+			Buyer:                                     data.Buyer,
+			Seller:                                    data.Seller,
+			DeliverToParty:                            data.DeliverToParty,
+			DeliverFromParty:                          data.DeliverFromParty,
+			DeliverToPlant:                            data.DeliverToPlant,
+			DeliverFromPlant:                          data.DeliverFromPlant,
+			Product:                                   data.Product,
+			DeliverToPlantStorageLocation:             data.DeliverToPlantStorageLocation,
+			DeliverFromPlantStorageLocation:           data.DeliverFromPlantStorageLocation,
+			DeliveryUnit:                              data.DeliveryUnit,
+			QuantityPerPackage:                        data.QuantityPerPackage,
+			MRPType:                                   data.MRPType,
+			MRPController:                             data.MRPController,
+			ReorderThresholdQuantityInBaseUnit:        data.ReorderThresholdQuantityInBaseUnit,
+			PlanningTimeFenceInDays:                   data.PlanningTimeFenceInDays,
+			MRPPlanningCalendar:                       data.MRPPlanningCalendar,
+			SafetyStockQuantityInBaseUnit:             data.SafetyStockQuantityInBaseUnit,
+			SafetyDuration:                            data.SafetyDuration,
+			SafetyDurationUnit:                        data.SafetyDurationUnit,
+			MaximumStockQuantityInBaseUnit:            data.MaximumStockQuantityInBaseUnit,
+			MinimumDeliveryQuantityInBaseUnit:         data.MinimumDeliveryQuantityInBaseUnit,
+			MinimumDeliveryLotSizeQuantityInBaseUnit:  data.MinimumDeliveryLotSizeQuantityInBaseUnit,
+			StandardDeliveryQuantityInBaseUnit:        data.StandardDeliveryQuantityInBaseUnit,
+			StandardDeliveryLotSizeQuantityInBaseUnit: data.StandardDeliveryLotSizeQuantityInBaseUnit,
+			MaximumDeliveryQuantityInBaseUnit:         data.MaximumDeliveryQuantityInBaseUnit,
+			MaximumDeliveryLotSizeQuantityInBaseUnit:  data.MaximumDeliveryLotSizeQuantityInBaseUnit,
+			DeliveryLotSizeRoundingQuantityInBaseUnit: data.DeliveryLotSizeRoundingQuantityInBaseUnit,
+			DeliveryLotSizeIsFixed:                    data.DeliveryLotSizeIsFixed,
+			StandardDeliveryDuration:                  data.StandardDeliveryDuration,
+			StandardDeliveryDurationUnit:              data.StandardDeliveryDurationUnit,
 	}
 }
 
@@ -109,28 +135,40 @@ func ConvertToDeliveryPlantRelationProductMRPAreaUpdates(deliveryPlantRelationPr
 	data := deliveryPlantRelationProductMRPAreaUpdates
 
 	return &DeliveryPlantRelationProductMRPAreaUpdates{
-		DeliverToPlantStorageLocation:             data.DeliverToPlantStorageLocation,
-		DeliverFromPlantStorageLocation:           data.DeliverFromPlantStorageLocation,
-		DeliveryUnit:                              data.DeliveryUnit,
-		MRPType:                                   data.MRPType,
-		MRPController:                             data.MRPController,
-		ReorderThresholdQuantity:                  data.ReorderThresholdQuantity,
-		PlanningTimeFence:                         data.PlanningTimeFence,
-		MRPPlanningCalendar:                       data.MRPPlanningCalendar,
-		SafetyStockQuantityInBaseUnit:             data.SafetyStockQuantityInBaseUnit,
-		SafetyDuration:                            data.SafetyDuration,
-		MaximumStockQuantityInBaseUnit:            data.MaximumStockQuantityInBaseUnit,
-		MinimumDeliveryQuantityInBaseUnit:         data.MinimumDeliveryQuantityInBaseUnit,
-		MinimumDeliveryLotSizeQuantityInBaseUnit:  data.MinimumDeliveryLotSizeQuantityInBaseUnit,
-		StandardDeliveryLotSizeQuantityInBaseUnit: data.StandardDeliveryLotSizeQuantityInBaseUnit,
-		DeliveryLotSizeRoundingQuantityInBaseUnit: data.DeliveryLotSizeRoundingQuantityInBaseUnit,
-		MaximumDeliveryLotSizeQuantityInBaseUnit:  data.MaximumDeliveryLotSizeQuantityInBaseUnit,
-		MaximumDeliveryQuantityInBaseUnit:         data.MaximumDeliveryQuantityInBaseUnit,
-		DeliveryLotSizeIsFixed:                    data.DeliveryLotSizeIsFixed,
-		StandardDeliveryDurationInDays:            data.StandardDeliveryDurationInDays,
-		IsAutoOrderCreationAllowed:                data.IsAutoOrderCreationAllowed,
-		IsOrderAcknowledgementRequired:            data.IsOrderAcknowledgementRequired,
-		IsMarkedForDeletion:                       data.IsMarkedForDeletion,
+			SupplyChainRelationshipID:                 data.SupplyChainRelationshipID,
+			SupplyChainRelationshipDeliveryID:         data.SupplyChainRelationshipDeliveryID,
+			SupplyChainRelationshipDeliveryPlantID:    data.SupplyChainRelationshipDeliveryPlantID,
+			Buyer:                                     data.Buyer,
+			Seller:                                    data.Seller,
+			DeliverToParty:                            data.DeliverToParty,
+			DeliverFromParty:                          data.DeliverFromParty,
+			DeliverToPlant:                            data.DeliverToPlant,
+			DeliverFromPlant:                          data.DeliverFromPlant,
+			Product:                                   data.Product,
+			MRPArea:                                   data.MRPArea,
+			DeliverToPlantStorageLocation:             data.DeliverToPlantStorageLocation,
+			DeliverFromPlantStorageLocation:           data.DeliverFromPlantStorageLocation,
+			DeliveryUnit:                              data.DeliveryUnit,
+			QuantityPerPackage:                        data.QuantityPerPackage,
+			MRPType:                                   data.MRPType,
+			MRPController:                             data.MRPController,
+			ReorderThresholdQuantityInBaseUnit:        data.ReorderThresholdQuantityInBaseUnit,
+			PlanningTimeFenceInDays:                   data.PlanningTimeFenceInDays,
+			MRPPlanningCalendar:                       data.MRPPlanningCalendar,
+			SafetyStockQuantityInBaseUnit:             data.SafetyStockQuantityInBaseUnit,
+			SafetyDuration:                            data.SafetyDuration,
+			SafetyDurationUnit:                        data.SafetyDurationUnit,
+			MaximumStockQuantityInBaseUnit:            data.MaximumStockQuantityInBaseUnit,
+			MinimumDeliveryQuantityInBaseUnit:         data.MinimumDeliveryQuantityInBaseUnit,
+			MinimumDeliveryLotSizeQuantityInBaseUnit:  data.MinimumDeliveryLotSizeQuantityInBaseUnit,
+			StandardDeliveryQuantityInBaseUnit:        data.StandardDeliveryQuantityInBaseUnit,
+			StandardDeliveryLotSizeQuantityInBaseUnit: data.StandardDeliveryLotSizeQuantityInBaseUnit,
+			MaximumDeliveryQuantityInBaseUnit:         data.MaximumDeliveryQuantityInBaseUnit,
+			MaximumDeliveryLotSizeQuantityInBaseUnit:  data.MaximumDeliveryLotSizeQuantityInBaseUnit,
+			DeliveryLotSizeRoundingQuantityInBaseUnit: data.DeliveryLotSizeRoundingQuantityInBaseUnit,
+			DeliveryLotSizeIsFixed:                    data.DeliveryLotSizeIsFixed,
+			StandardDeliveryDuration:                  data.StandardDeliveryDuration,
+			StandardDeliveryDurationUnit:              data.StandardDeliveryDurationUnit,
 	}
 }
 
@@ -138,12 +176,15 @@ func ConvertToStockConfPlantRelationUpdates(stockConfPlantRelationUpdates StockC
 	data := stockConfPlantRelationUpdates
 
 	return &StockConfPlantRelationUpdates{
-		StockConfirmationBusinessPartner: data.StockConfirmationBusinessPartner,
-		StockConfirmationPlant:           data.StockConfirmationPlant,
-		DefaultRelation:                  data.DefaultRelation,
-		MRPType:                          data.MRPType,
-		MRPController:                    data.MRPController,
-		IsMarkedForDeletion:              data.IsMarkedForDeletion,
+			SupplyChainRelationshipID:               data.SupplyChainRelationshipID,
+			SupplyChainRelationshipStockConfPlantID: data.SupplyChainRelationshipStockConfPlantID,
+			Buyer:                                   data.Buyer,
+			Seller:                                  data.Seller,
+			StockConfirmationBusinessPartner:        data.StockConfirmationBusinessPartner,
+			StockConfirmationPlant:                  data.StockConfirmationPlant,
+			DefaultRelation:                         data.DefaultRelation,
+			MRPType:                                 data.MRPType,
+			MRPController:                           data.MRPController,
 	}
 }
 
@@ -151,9 +192,15 @@ func ConvertToStockConfPlantRelationProductUpdates(stockConfPlantRelationProduct
 	data := stockConfPlantRelationProductUpdates
 
 	return &StockConfPlantRelationProductUpdates{
-		MRPType:             data.MRPType,
-		MRPController:       data.MRPController,
-		IsMarkedForDeletion: data.IsMarkedForDeletion,
+			SupplyChainRelationshipID:               data.SupplyChainRelationshipID,
+			SupplyChainRelationshipStockConfPlantID: data.SupplyChainRelationshipStockConfPlantID,
+			Buyer:                                   data.Buyer,
+			Seller:                                  data.Seller,
+			StockConfirmationBusinessPartner:        data.StockConfirmationBusinessPartner,
+			StockConfirmationPlant:                  data.StockConfirmationPlant,
+			Product:                                 data.Product,
+			MRPType:                                 data.MRPType,
+			MRPController:                           data.MRPController,
 	}
 }
 
@@ -161,12 +208,15 @@ func ConvertToProductionPlantRelationUpdates(productionPlantRelationUpdates Prod
 	data := productionPlantRelationUpdates
 
 	return &ProductionPlantRelationUpdates{
-		ProductionPlantBusinessPartner: data.ProductionPlantBusinessPartner,
-		ProductionPlant:                data.ProductionPlant,
-		DefaultRelation:                data.DefaultRelation,
-		MRPType:                        data.MRPType,
-		MRPController:                  data.MRPController,
-		IsMarkedForDeletion:            data.IsMarkedForDeletion,
+			SupplyChainRelationshipID:                data.SupplyChainRelationshipID,
+			SupplyChainRelationshipProductionPlantID: data.SupplyChainRelationshipProductionPlantID,
+			Buyer:                                    data.Buyer,
+			Seller:                                   data.Seller,
+			ProductionPlantBusinessPartner:           data.ProductionPlantBusinessPartner,
+			ProductionPlant:                          data.ProductionPlant,
+			DefaultRelation:                          data.DefaultRelation,
+			MRPType:                                  data.MRPType,
+			MRPController:                            data.MRPController,
 	}
 }
 
@@ -174,8 +224,15 @@ func ConvertToProductionPlantRelationProductUpdates(productionPlantRelationProdu
 	data := productionPlantRelationProductUpdates
 
 	return &ProductionPlantRelationProductUpdates{
-		MRPType:             data.MRPType,
-		MRPController:       data.MRPController,
-		IsMarkedForDeletion: data.IsMarkedForDeletion,
+			SupplyChainRelationshipID:                data.SupplyChainRelationshipID,
+			SupplyChainRelationshipProductionPlantID: data.SupplyChainRelationshipProductionPlantID,
+			Buyer:                                    data.Buyer,
+			Seller:                                   data.Seller,
+			ProductionPlantBusinessPartner:           data.ProductionPlantBusinessPartner,
+			ProductionPlant:                          data.ProductionPlant,
+			Product:                                  data.Product,
+			ProductionPlantStorageLocation:           data.ProductionPlantStorageLocation,
+			MRPType:                                  data.MRPType,
+			MRPController:                            data.MRPController,
 	}
 }

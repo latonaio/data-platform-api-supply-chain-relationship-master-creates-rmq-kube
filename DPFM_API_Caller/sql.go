@@ -23,14 +23,15 @@ func (c *DPFMAPICaller) createSqlProcess(
 	var general *dpfm_api_output_formatter.General
 	var transaction *[]dpfm_api_output_formatter.Transaction
 	var billingRelation *[]dpfm_api_output_formatter.BillingRelation
-	var deliveryPlantRelationProductMRPArea *[]dpfm_api_output_formatter.DeliveryPlantRelationProductMRPArea
-	var deliveryPlantRelation *[]dpfm_api_output_formatter.DeliveryPlantRelation
-	var deliveryRelation *[]dpfm_api_output_formatter.DeliveryRelation
 	var paymentRelation *[]dpfm_api_output_formatter.PaymentRelation
-	var productionPlantRelationMRP *[]dpfm_api_output_formatter.ProductionPlantRelationMRP
+	var deliveryRelation *[]dpfm_api_output_formatter.DeliveryRelation
+	var deliveryPlantRelation *[]dpfm_api_output_formatter.DeliveryPlantRelation
+	var deliveryPlantRelationProduct *[]dpfm_api_output_formatter.DeliveryPlantRelationProduct
+	var deliveryPlantRelationProductMRPArea *[]dpfm_api_output_formatter.DeliveryPlantRelationProductMRPArea
 	var productionPlantRelation *[]dpfm_api_output_formatter.ProductionPlantRelation
-	var stockConfPlantRelationProduct *[]dpfm_api_output_formatter.StockConfPlantRelationProduct
+	var productionPlantRelationProductMRPArea *[]dpfm_api_output_formatter.ProductionPlantRelationProductMRPArea
 	var stockConfPlantRelation *[]dpfm_api_output_formatter.StockConfPlantRelation
+	var stockConfPlantRelationProduct *[]dpfm_api_output_formatter.StockConfPlantRelationProduct
 	for _, fn := range accepter {
 		switch fn {
 		case "General":
@@ -39,38 +40,41 @@ func (c *DPFMAPICaller) createSqlProcess(
 			transaction = c.transactionCreateSql(nil, mtx, input, output, errs, log)
 		case "BillingRelation":
 			billingRelation = c.billingRelationCreateSql(nil, mtx, input, output, errs, log)
-		case "DeliveryPlantRelationProductMRPArea":
-			deliveryPlantRelationProductMRPArea = c.deliveryPlantRelationProductMRPAreaCreateSql(nil, mtx, input, output, errs, log)
-		case "DeliveryPlantRelation":
-			deliveryPlantRelation = c.deliveryPlantRelationCreateSql(nil, mtx, input, output, errs, log)
-		case "DeliveryRelation":
-			deliveryRelation = c.deliveryRelationCreateSql(nil, mtx, input, output, errs, log)
 		case "PaymentRelation":
 			paymentRelation = c.paymentRelationCreateSql(nil, mtx, input, output, errs, log)
-		case "ProductionPlantRelationMRP":
-			productionPlantRelationMRP = c.productionPlantRelationMRPCreateSql(nil, mtx, input, output, errs, log)
+		case "DeliveryRelation":
+			deliveryRelation = c.deliveryRelationCreateSql(nil, mtx, input, output, errs, log)
+		case "DeliveryPlantRelation":
+			deliveryPlantRelation = c.deliveryPlantRelationCreateSql(nil, mtx, input, output, errs, log)
+		case "DeliveryPlantRelationProduct":
+			deliveryPlantRelationProduct = c.deliveryPlantRelationProductCreateSql(nil, mtx, input, output, errs, log)
+		case "DeliveryPlantRelationProductMRPArea":
+			deliveryPlantRelationProductMRPArea = c.deliveryPlantRelationProductMRPAreaCreateSql(nil, mtx, input, output, errs, log)
 		case "ProductionPlantRelation":
 			productionPlantRelation = c.productionPlantRelationCreateSql(nil, mtx, input, output, errs, log)
-		case "StockConfPlantRelationProduct":
-			stockConfPlantRelationProduct = c.stockConfPlantRelationProductCreateSql(nil, mtx, input, output, errs, log)
+		case "ProductionPlantRelationProductMRPArea":
+			productionPlantRelationProductMRPArea = c.productionPlantRelationProductMRPAreaCreateSql(nil, mtx, input, output, errs, log)
 		case "StockConfPlantRelation":
 			stockConfPlantRelation = c.stockConfPlantRelationCreateSql(nil, mtx, input, output, errs, log)
+		case "StockConfPlantRelationProduct":
+			stockConfPlantRelationProduct = c.stockConfPlantRelationProductCreateSql(nil, mtx, input, output, errs, log)
 		default:
 
 		}
 	}
 
 	data := &dpfm_api_output_formatter.Message{
-		General:                             general,
-		BillingRelation:                     billingRelation,
-		DeliveryPlantRelationProductMRPArea: deliveryPlantRelationProductMRPArea,
-		DeliveryPlantRelation:               deliveryPlantRelation,
-		DeliveryRelation:                    deliveryRelation,
-		PaymentRelation:                     paymentRelation,
-		ProductionPlantRelationMRP:          productionPlantRelationMRP,
-		ProductionPlantRelation:             productionPlantRelation,
-		StockConfPlantRelationProduct:       stockConfPlantRelationProduct,
-		StockConfPlantRelation:              stockConfPlantRelation,
+		General:                             	general,
+		BillingRelation:                     	billingRelation,
+		PaymentRelation:                     	paymentRelation,
+		DeliveryRelation:                    	deliveryRelation,
+		DeliveryPlantRelation:               	deliveryPlantRelation,
+		DeliveryPlantRelationProduct:		 	deliveryPlantRelationProduct,
+		DeliveryPlantRelationProductMRPArea: 	deliveryPlantRelationProductMRPArea,
+		ProductionPlantRelation:             	productionPlantRelation,
+		ProductionPlantRelationProductMRPArea:	productionPlantRelationMRP,
+		StockConfPlantRelation:              	stockConfPlantRelation,
+		StockConfPlantRelationProduct:			stockConfPlantRelationProduct,
 	}
 
 	return data
@@ -88,52 +92,59 @@ func (c *DPFMAPICaller) updateSqlProcess(
 	var general *dpfm_api_processing_formatter.GeneralUpdates
 	var transaction *[]dpfm_api_output_formatter.Transaction
 	var billingRelation *[]dpfm_api_output_formatter.BillingRelationUpdates
-	var deliveryPlantRelationProductMRPArea *[]dpfm_api_output_formatter.DeliveryPlantRelationProductMRPAreaUpdates
-	var deliveryPlantRelation *[]dpfm_api_output_formatter.DeliveryPlantRelationUpdates
-	var deliveryRelation *[]dpfm_api_output_formatter.DeliveryRelationUpdates
 	var paymentRelation *[]dpfm_api_output_formatter.PaymentRelationUpdates
-	var productionPlantRelationMRP *[]dpfm_api_output_formatter.ProductionPlantRelationMRPUpdates
+	var deliveryRelation *[]dpfm_api_output_formatter.DeliveryRelationUpdates
+	var deliveryPlantRelation *[]dpfm_api_output_formatter.DeliveryPlantRelationUpdates
+	var deliveryPlantRelationProduct *[]dpfm_api_output_formatter.DeliveryPlantRelationProductUpdates
+	var deliveryPlantRelationProductMRPArea *[]dpfm_api_output_formatter.DeliveryPlantRelationProductMRPAreaUpdates
 	var productionPlantRelation *[]dpfm_api_output_formatter.ProductionPlantRelationUpdates
-	var stockConfPlantRelationProduct *[]dpfm_api_output_formatter.StockConfPlantRelationProductUpdates
+	var productionPlantRelationProductMRPArea *[]dpfm_api_output_formatter.ProductionPlantRelationProductMRPAreaUpdates
 	var stockConfPlantRelation *[]dpfm_api_output_formatter.StockConfPlantRelationUpdates
+	var stockConfPlantRelationProduct *[]dpfm_api_output_formatter.StockConfPlantRelationProductUpdates
+
 	for _, fn := range accepter {
 		switch fn {
 		case "General":
 			general = c.generalUpdateSql(mtx, input, output, errs, log)
-		case "BusinessPartner":
-			businessPartner = c.businessPartnerUpdateSql(mtx, input, output, errs, log)
-		case "DeliveryPlantRelationProductMRPArea":
-			deliveryPlantRelationProductMRPArea = c.deliveryPlantRelationProductMRPArea(mtx, input, output, errs, log)
-		case "DeliveryPlantRelation":
-			deliveryPlantRelation = c.deliveryPlantRelation(mtx, input, output, errs, log)
-		case "DeliveryRelation":
-			deliveryRelation = c.deliveryRelation(mtx, input, output, errs, log)
+		case "Transaction":
+			transaction = c.transactionUpdateSql(mtx, input, output, errs, log)
+		case "BillingRelation":
+			billingRelation = c.billingRelationUpdateSql(nil, mtx, input, output, errs, log)
 		case "PaymentRelation":
-			paymentRelation = c.paymentRelation(mtx, input, output, errs, log)
-		case "ProductionPlantRelationMRP":
-			productionPlantRelationMRP = c.productionPlantRelationMRP(mtx, input, output, errs, log)
+			paymentRelation = c.paymentRelationUpdateSql(mtx, input, output, errs, log)
+		case "DeliveryRelation":
+			deliveryRelation = c.deliveryRelationUpdateSql(mtx, input, output, errs, log)
+		case "DeliveryPlantRelation":
+			deliveryPlantRelation = c.deliveryPlantRelationUpdateSql(mtx, input, output, errs, log)
+		case "DeliveryPlantRelationProduct":
+			deliveryPlantRelationProduct = c.deliveryPlantRelationProductUpdateSql(mtx, input, output, errs, log)
+		case "DeliveryPlantRelationProductMRPArea":
+			deliveryPlantRelationProductMRPArea = c.deliveryPlantRelationProductMRPAreaUpdateSql(mtx, input, output, errs, log)
 		case "ProductionPlantRelation":
-			productionPlantRelation = c.productionPlantRelation(mtx, input, output, errs, log)
-		case "StockConfPlantRelationProduct":
-			stockConfPlantRelationProduct = c.stockConfPlantRelationProduct(mtx, input, output, errs, log)
+			productionPlantRelation = c.productionPlantRelationUpdateSql(mtx, input, output, errs, log)
+		case "ProductionPlantRelationProductMRPArea":
+			productionPlantRelationProductMRPArea = c.productionPlantRelationProductMRPAreaUpdateSql(mtx, input, output, errs, log)
 		case "StockConfPlantRelation":
-			stockConfPlantRelation = c.stockConfPlantRelation(mtx, input, output, errs, log)
+			stockConfPlantRelation = c.stockConfPlantRelationUpdateSql(mtx, input, output, errs, log)
+		case "StockConfPlantRelationProduct":
+			stockConfPlantRelationProduct = c.stockConfPlantRelationProductUpdateSql(mtx, input, output, errs, log)
 		default:
 
 		}
 	}
 
 	data := &dpfm_api_output_formatter.Message{
-		General:                             general,
-		BillingRelation:                     billingRelation,
-		DeliveryPlantRelationProductMRPArea: deliveryPlantRelationProductMRPArea,
-		DeliveryPlantRelation:               deliveryPlantRelation,
-		DeliveryRelation:                    deliveryRelation,
-		PaymentRelation:                     paymentRelation,
-		ProductionPlantRelationMRP:          productionPlantRelationMRP,
-		ProductionPlantRelation:             productionPlantRelation,
-		StockConfPlantRelationProduct:       stockConfPlantRelationProduct,
-		StockConfPlantRelation:              stockConfPlantRelation,
+		General:                             	general,
+		BillingRelation:                     	billingRelation,
+		PaymentRelation:                     	paymentRelation,
+		DeliveryRelation:                    	deliveryRelation,
+		DeliveryPlantRelation:               	deliveryPlantRelation,
+		DeliveryPlantRelationProduct:		 	deliveryPlantRelationProduct,
+		DeliveryPlantRelationProductMRPArea: 	deliveryPlantRelationProductMRPArea,
+		ProductionPlantRelation:             	productionPlantRelation,
+		ProductionPlantRelationProductMRPArea:	productionPlantRelationProductMRPArea,
+		StockConfPlantRelation:              	stockConfPlantRelation,
+		StockConfPlantRelationProduct:       	stockConfPlantRelationProduct,
 	}
 
 	return data
@@ -182,7 +193,7 @@ func (c *DPFMAPICaller) generalUpdateSql(
 ) *dpfm_api_output_formatter.General {
 	req := dpfm_api_processing_formatter.ConvertToGeneralUpdates(input.General)
 
-	res, err := c.rmq.SessionKeepRequest(nil, c.conf.RMQ.QueueToSQL()[0], map[string]interface{}{"message": req, "function": "InvoiceDocumentHeader", "runtime_session_id": 123})
+	res, err := c.rmq.SessionKeepRequest(nil, c.conf.RMQ.QueueToSQL()[0], map[string]interface{}{"message": req, "function": "SupplyChainRelationshipMasterGeneral", "runtime_session_id": sessionID})
 	if err != nil {
 		err = xerrors.Errorf("rmq error: %w", err)
 		return nil

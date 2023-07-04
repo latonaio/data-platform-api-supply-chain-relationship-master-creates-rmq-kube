@@ -25,18 +25,18 @@ type SDC struct {
 }
 
 type Message struct {
-	General                             *General                               `json:"General"`
-	Transaction                         *[]Transaction                         `json:"Transaction"`
-	DeliveryRelation                    *[]DeliveryRelation                    `json:"DeliveryRelation"`
-	BillingRelation                     *[]BillingRelation                     `json:"BillingRelation"`
-	PaymentRelation                     *[]PaymentRelation                     `json:"PaymentRelation"`
-	DeliveryPlantRelation               *[]DeliveryPlantRelation               `json:"DeliveryPlantRelation"`
-	DeliveryPlantRelationProduct        *[]DeliveryPlantRelationProduct        `json:"DeliveryPlantRelationProduct"`
-	DeliveryPlantRelationProductMRPArea *[]DeliveryPlantRelationProductMRPArea `json:"DeliveryPlantRelationProductMRPArea"`
-	StockConfPlantRelation              *[]StockConfPlantRelation              `json:"StockConfPlantRelation"`
-	StockConfPlantRelationProduct       *[]StockConfPlantRelationProduct       `json:"StockConfPlantRelationProduct"`
-	ProductionPlantRelation             *[]ProductionPlantRelation             `json:"ProductionPlantRelation"`
-	ProductionPlantRelationMRP          *[]ProductionPlantRelationMRP          `json:"ProductionPlantRelationMRP"`
+	General                        		       *General                        		         `json:"General"`
+	Transaction                     		   *[]Transaction                		         `json:"Transaction"`
+	BillingRelation                  		   *[]BillingRelation                		     `json:"BillingRelation"`
+	PaymentRelation                   		   *[]PaymentRelation                		     `json:"PaymentRelation"`
+	DeliveryRelation                		   *[]DeliveryRelation             	             `json:"DeliveryRelation"`
+	DeliveryPlantRelation             		   *[]DeliveryPlantRelation            			 `json:"DeliveryPlantRelation"`
+	DeliveryPlantRelationProduct     		   *[]DeliveryPlantRelationProduct  	     	 `json:"DeliveryPlantRelationProduct"`
+	DeliveryPlantRelationProductMRPArea		   *[]DeliveryPlantRelationProductMRPArea 		 `json:"DeliveryPlantRelationProductMRPArea"`
+	StockConfPlantRelation           		   *[]StockConfPlantRelation            		 `json:"StockConfPlantRelation"`
+	StockConfPlantRelationProduct     		   *[]StockConfPlantRelationProduct     		 `json:"StockConfPlantRelationProduct"`
+	ProductionPlantRelation           		   *[]ProductionPlantRelation            		 `json:"ProductionPlantRelation"`
+	ProductionPlantRelationProductMRPArea      *[]ProductionPlantRelationProductMRPArea      `json:"ProductionPlantRelationProductMRPArea"`
 }
 
 type General struct {
@@ -66,18 +66,24 @@ type Transaction struct {
 	IsMarkedForDeletion       *bool   `json:"IsMarkedForDeletion"`
 }
 
-type DeliveryRelation struct {
-	SupplyChainRelationshipID         int     `json:"SupplyChainRelationshipID"`
-	SupplyChainRelationshipDeliveryID int     `json:"SupplyChainRelationshipDeliveryID"`
-	Buyer                             int     `json:"Buyer"`
-	Seller                            int     `json:"Seller"`
-	DeliverToParty                    int     `json:"DeliverToParty"`
-	DeliverFromParty                  int     `json:"DeliverFromParty"`
-	DefaultRelation                   *bool   `json:"DefaultRelation"`
-	CreationDate                      *string `json:"CreationDate"`
-	LastChangeDate                    *string `json:"LastChangeDate"`
-	IsMarkedForDeletion               *bool   `json:"IsMarkedForDeletion"`
+type BillingRelation struct {
+	SupplyChainRelationshipID        int     `json:"SupplyChainRelationshipID"`
+	SupplyChainRelationshipBillingID int     `json:"SupplyChainRelationshipBillingID"`
+	Buyer                            int     `json:"Buyer"`
+	Seller                           int     `json:"Seller"`
+	BillToParty                      int     `json:"BillToParty"`
+	BillFromParty                    int     `json:"BillFromParty"`
+	DefaultRelation                  *bool   `json:"DefaultRelation"`
+	BillToCountry                    *string `json:"BillToCountry"`
+	BillFromCountry                  *string `json:"BillFromCountry"`
+	IsExportImport                   *bool   `json:"IsExportImport"`
+	TransactionTaxCategory           *string `json:"TransactionTaxCategory"`
+	TransactionTaxClassification     *string `json:"TransactionTaxClassification"`
+	CreationDate                     *string `json:"CreationDate"`
+	LastChangeDate                   *string `json:"LastChangeDate"`
+	IsMarkedForDeletion              *bool   `json:"IsMarkedForDeletion"`
 }
+
 type PaymentRelation struct {
 	SupplyChainRelationshipID        int     `json:"SupplyChainRelationshipID"`
 	SupplyChainRelationshipBillingID int     `json:"SupplyChainRelationshipBillingID"`
@@ -98,22 +104,17 @@ type PaymentRelation struct {
 	IsMarkedForDeletion              *bool   `json:"IsMarkedForDeletion"`
 }
 
-type BillingRelation struct {
-	SupplyChainRelationshipID        int     `json:"SupplyChainRelationshipID"`
-	SupplyChainRelationshipBillingID int     `json:"SupplyChainRelationshipBillingID"`
-	Buyer                            int     `json:"Buyer"`
-	Seller                           int     `json:"Seller"`
-	BillToParty                      int     `json:"BillToParty"`
-	BillFromParty                    int     `json:"BillFromParty"`
-	DefaultRelation                  *bool   `json:"DefaultRelation"`
-	BillToCountry                    *string `json:"BillToCountry"`
-	BillFromCountry                  *string `json:"BillFromCountry"`
-	IsExportImport                   *bool   `json:"IsExportImport"`
-	TransactionTaxCategory           *string `json:"TransactionTaxCategory"`
-	TransactionTaxClassification     *string `json:"TransactionTaxClassification"`
-	CreationDate                     *string `json:"CreationDate"`
-	LastChangeDate                   *string `json:"LastChangeDate"`
-	IsMarkedForDeletion              *bool   `json:"IsMarkedForDeletion"`
+type DeliveryRelation struct {
+	SupplyChainRelationshipID         int     `json:"SupplyChainRelationshipID"`
+	SupplyChainRelationshipDeliveryID int     `json:"SupplyChainRelationshipDeliveryID"`
+	Buyer                             int     `json:"Buyer"`
+	Seller                            int     `json:"Seller"`
+	DeliverToParty                    int     `json:"DeliverToParty"`
+	DeliverFromParty                  int     `json:"DeliverFromParty"`
+	DefaultRelation                   *bool   `json:"DefaultRelation"`
+	CreationDate                      *string `json:"CreationDate"`
+	LastChangeDate                    *string `json:"LastChangeDate"`
+	IsMarkedForDeletion               *bool   `json:"IsMarkedForDeletion"`
 }
 
 type DeliveryPlantRelation struct {
@@ -141,31 +142,33 @@ type DeliveryPlantRelationProduct struct {
 	Buyer                                     int      `json:"Buyer"`
 	Seller                                    int      `json:"Seller"`
 	DeliverToParty                            int      `json:"DeliverToParty"`
-	DeliverFromToParty                        int      `json:"DeliverFromToParty"`
+	DeliverFromParty                          int      `json:"DeliverFromParty"`
 	DeliverToPlant                            string   `json:"DeliverToPlant"`
 	DeliverFromPlant                          string   `json:"DeliverFromPlant"`
 	Product                                   string   `json:"Product"`
-	DeliverToPlantStorageLocation             *string  `json:"DeliverToPlantStorageLocation"`
-	DeliverFromPlantStorageLocation           *string  `json:"DeliverFromPlantStorageLocation"`
-	DeliveryUnit                              *string  `json:"DeliveryUnit"`
+	DeliverToPlantStorageLocation             string   `json:"DeliverToPlantStorageLocation"`
+	DeliverFromPlantStorageLocation           string   `json:"DeliverFromPlantStorageLocation"`
+	DeliveryUnit                              string   `json:"DeliveryUnit"`
+	QuantityPerPackage                        *float32 `json:"QuantityPerPackage"`
 	MRPType                                   *string  `json:"MRPType"`
 	MRPController                             *string  `json:"MRPController"`
-	ReorderThresholdQuantity                  *float32 `json:"ReorderThresholdQuantity"`
-	PlanningTimeFence                         *int     `json:"PlanningTimeFence"`
+	ReorderThresholdQuantityInBaseUnit        *float32 `json:"ReorderThresholdQuantityInBaseUnit"`
+	PlanningTimeFenceInDays                   *int     `json:"PlanningTimeFenceInDays"`
 	MRPPlanningCalendar                       *string  `json:"MRPPlanningCalendar"`
 	SafetyStockQuantityInBaseUnit             *float32 `json:"SafetyStockQuantityInBaseUnit"`
-	SafetyDuration                            *int     `json:"SafetyDuration"`
+	SafetyDuration                            *float32 `json:"SafetyDuration"`
+	SafetyDurationUnit                        *string  `json:"SafetyDurationUnit"`
 	MaximumStockQuantityInBaseUnit            *float32 `json:"MaximumStockQuantityInBaseUnit"`
-	MinumumDeliveryQuantityInBaseUnit         *float32 `json:"MinumumDeliveryQuantityInBaseUnit"`
-	MinumumDeliveryLotSizeQuantityInBaseUnit  *float32 `json:"MinumumDeliveryLotSizeQuantityInBaseUnit"`
-	StandardDeliveryLotSizeQuantityInBaseUnit *float32 `json:"StandardDeliveryLotSizeQuantityInBaseUnit"`
-	DeliveryLotSizeRoundingQuantityInBaseUnit *float32 `json:"DeliveryLotSizeRoundingQuantityInBaseUnit"`
-	MaximumDeliveryLotSizeQuantityInBaseUnit  *float32 `json:"MaximumDeliveryLotSizeQuantityInBaseUnit"`
-	MaximumDeliveryQuantityInBaseUnit         *float32 `json:"MaximumDeliveryQuantityInBaseUnit"`
+    MinimumDeliveryQuantityInBaseUnit         *float32 `json:"MinimumDeliveryQuantityInBaseUnit"`
+    MinimumDeliveryLotSizeQuantityInBaseUnit  *float32 `json:"MinimumDeliveryLotSizeQuantityInBaseUnit"`
+    StandardDeliveryQuantityInBaseUnit        *float32 `json:"StandardDeliveryQuantityInBaseUnit"`
+    StandardDeliveryLotSizeQuantityInBaseUnit *float32 `json:"StandardDeliveryLotSizeQuantityInBaseUnit"`
+    MaximumDeliveryQuantityInBaseUnit         *float32 `json:"MaximumDeliveryQuantityInBaseUnit"`
+    MaximumDeliveryLotSizeQuantityInBaseUnit  *float32 `json:"MaximumDeliveryLotSizeQuantityInBaseUnit"`
+    DeliveryLotSizeRoundingQuantityInBaseUnit *float32 `json:"DeliveryLotSizeRoundingQuantityInBaseUnit"`
 	DeliveryLotSizeIsFixed                    *bool    `json:"DeliveryLotSizeIsFixed"`
-	StandardDeliveryDurationInDays            *int     `json:"StandardDeliveryDurationInDays"`
-	IsAutoOrderCreationAllowed                *bool    `json:"IsAutoOrderCreationAllowed"`
-	IsOrderAcknowledgementRequired            *bool    `json:"IsOrderAcknowledgementRequired"`
+	StandardDeliveryDuration            	  *float32 `json:"StandardDeliveryDuration"`
+	StandardDeliveryDurationUnit			  *string  `json:"StandardDeliveryDurationUnit"`
 	CreationDate                              *string  `json:"CreationDate"`
 	LastChangeDate                            *string  `json:"LastChangeDate"`
 	IsMarkedForDeletion                       *bool    `json:"IsMarkedForDeletion"`
@@ -182,28 +185,30 @@ type DeliveryPlantRelationProductMRPArea struct {
 	DeliverToPlant                            string   `json:"DeliverToPlant"`
 	DeliverFromPlant                          string   `json:"DeliverFromPlant"`
 	Product                                   string   `json:"Product"`
-	DeliverToPlantStorageLocation             *string  `json:"DeliverToPlantStorageLocation"`
-	DeliverFromPlantStorageLocation           *string  `json:"DeliverFromPlantStorageLocation"`
-	DeliveryUnit                              *string  `json:"DeliveryUnit"`
-	MRPType                                   *string  `json:"MRPType"`
 	MRPArea                                   string   `json:"MRPArea"`
+	DeliverToPlantStorageLocation             string   `json:"DeliverToPlantStorageLocation"`
+	DeliverFromPlantStorageLocation           string   `json:"DeliverFromPlantStorageLocation"`
+	DeliveryUnit                              string   `json:"DeliveryUnit"`
+	QuantityPerPackage                        *float32 `json:"QuantityPerPackage"`
+	MRPType                                   *string  `json:"MRPType"`
 	MRPController                             *string  `json:"MRPController"`
-	ReorderThresholdQuantity                  *float32 `json:"ReorderThresholdQuantity"`
-	PlanningTimeFence                         *int     `json:"PlanningTimeFence"`
+	ReorderThresholdQuantityInBaseUnit        *float32 `json:"ReorderThresholdQuantityInBaseUnit"`
+	PlanningTimeFenceInDays                   *int     `json:"PlanningTimeFenceInDays"`
 	MRPPlanningCalendar                       *string  `json:"MRPPlanningCalendar"`
 	SafetyStockQuantityInBaseUnit             *float32 `json:"SafetyStockQuantityInBaseUnit"`
-	SafetyDuration                            *int     `json:"SafetyDuration"`
+	SafetyDuration                            *float32 `json:"SafetyDuration"`
+	SafetyDurationUnit                        *string  `json:"SafetyDurationUnit"`
 	MaximumStockQuantityInBaseUnit            *float32 `json:"MaximumStockQuantityInBaseUnit"`
-	MinumumDeliveryQuantityInBaseUnit         *float32 `json:"MinumumDeliveryQuantityInBaseUnit"`
-	MinumumDeliveryLotSizeQuantityInBaseUnit  *float32 `json:"MinumumDeliveryLotSizeQuantityInBaseUnit"`
+	MinimumDeliveryQuantityInBaseUnit         *float32 `json:"MinimumDeliveryQuantityInBaseUnit"`
+	MinimumDeliveryLotSizeQuantityInBaseUnit  *float32 `json:"MinimumDeliveryLotSizeQuantityInBaseUnit"`
+	StandardDeliveryQuantityInBaseUnit        *float32 `json:"StandardDeliveryQuantityInBaseUnit"`
 	StandardDeliveryLotSizeQuantityInBaseUnit *float32 `json:"StandardDeliveryLotSizeQuantityInBaseUnit"`
-	DeliveryLotSizeRoundingQuantityInBaseUnit *float32 `json:"DeliveryLotSizeRoundingQuantityInBaseUnit"`
-	MaximumDeliveryLotSizeQuantityInBaseUnit  *float32 `json:"MaximumDeliveryLotSizeQuantityInBaseUnit"`
 	MaximumDeliveryQuantityInBaseUnit         *float32 `json:"MaximumDeliveryQuantityInBaseUnit"`
+	MaximumDeliveryLotSizeQuantityInBaseUnit  *float32 `json:"MaximumDeliveryLotSizeQuantityInBaseUnit"`
+	DeliveryLotSizeRoundingQuantityInBaseUnit *float32 `json:"DeliveryLotSizeRoundingQuantityInBaseUnit"`
 	DeliveryLotSizeIsFixed                    *bool    `json:"DeliveryLotSizeIsFixed"`
-	StandardDeliveryDurationInDays            *int     `json:"StandardDeliveryDurationInDays"`
-	IsAutoOrderCreationAllowed                *bool    `json:"IsAutoOrderCreationAllowed"`
-	IsOrderAcknowledgementRequired            *bool    `json:"IsOrderAcknowledgementRequired"`
+	StandardDeliveryDuration				  *float32 `json:"StandardDeliveryDuration"`
+	StandardDeliveryDurationUnit			  *string  `json:"StandardDeliveryDurationUnit"`
 	CreationDate                              *string  `json:"CreationDate"`
 	LastChangeDate                            *string  `json:"LastChangeDate"`
 	IsMarkedForDeletion                       *bool    `json:"IsMarkedForDeletion"`
@@ -254,7 +259,7 @@ type ProductionPlantRelation struct {
 	IsMarkedForDeletion                      *bool   `json:"IsMarkedForDeletion"`
 }
 
-type ProductionPlantRelationMRP struct {
+type ProductionPlantRelationProductMRPArea struct {
 	SupplyChainRelationshipID                int     `json:"SupplyChainRelationshipID"`
 	SupplyChainRelationshipProductionPlantID int     `json:"SupplyChainRelationshipProductionPlantID"`
 	Buyer                                    int     `json:"Buyer"`
@@ -262,6 +267,7 @@ type ProductionPlantRelationMRP struct {
 	ProductionPlantBusinessPartner           int     `json:"ProductionPlantBusinessPartner"`
 	ProductionPlant                          string  `json:"ProductionPlant"`
 	Product                                  string  `json:"Product"`
+	MRPArea                                  string  `json:"MRPArea"`
 	ProductionPlantStorageLocation           *string `json:"ProductionPlantStorageLocation"`
 	MRPType                                  *string `json:"MRPType"`
 	MRPController                            *string `json:"MRPController"`

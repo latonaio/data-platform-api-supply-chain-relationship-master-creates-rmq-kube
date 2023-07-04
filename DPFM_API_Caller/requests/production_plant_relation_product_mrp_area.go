@@ -1,6 +1,6 @@
 package requests
 
-type ProductionPlantRelationMRP struct {
+type ProductionPlantRelationProductMRPArea struct {
 	SupplyChainRelationshipID                int     `json:"SupplyChainRelationshipID"`
 	SupplyChainRelationshipProductionPlantID int     `json:"SupplyChainRelationshipProductionPlantID"`
 	Buyer                                    int     `json:"Buyer"`
@@ -8,6 +8,7 @@ type ProductionPlantRelationMRP struct {
 	ProductionPlantBusinessPartner           int     `json:"ProductionPlantBusinessPartner"`
 	ProductionPlant                          string  `json:"ProductionPlant"`
 	Product                                  string  `json:"Product"`
+	MRPArea                                  string  `json:"MRPArea"`
 	ProductionPlantStorageLocation           *string `json:"ProductionPlantStorageLocation"`
 	MRPType                                  *string `json:"MRPType"`
 	MRPController                            *string `json:"MRPController"`
